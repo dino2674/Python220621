@@ -1,0 +1,6 @@
+hRst = 2 error  발생
+
+ (C:\Program Files (x86)\AhnLab\APC2\Policy Agent\AmV3Pro.exe)hRst = 2  error  qkftod
+
+RegOpenKey(SOFTWARE\Ahnlab\APC2\Policy Agent\UpdateFlag\NeedUploadInfo) : 0 error 발생
+
