@@ -11,7 +11,7 @@ def divide(a,b):
 try:    
 
     #함수 호출
-    result = divide(5,0)
+    result = divide(5,2)
     print ("결과:{0}".format(result))
 
 except ZeroDivisionError:
