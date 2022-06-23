@@ -7,6 +7,7 @@ import re
 hdr = {'User-agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1'}
 
 f = open("c:\\work\\land.txt", "wt", encoding="utf-8")
+
 for n in range(1,3):
         #조인스랜드 테마검색: 상승률이 높은 아파트로 검색 
         data ='https://price.joinsland.joins.com/theme/index_theme.asp?sisaegbn=T07&page=' + str(n)
