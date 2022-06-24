@@ -4,16 +4,22 @@ import urllib.request
 from bs4 import BeautifulSoup
 import webbrowser   #브라우저로 넘기는 경우 
 import re 
+import asyncio
+
 
 class Form(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setupUI()
+        #비동기 처리를 위한 루프 
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(asyncio.gather(self.setupUI()))
 
-    def setupUI(self):
+    async def setupUI(self):
         #창의 시작위치와 폭, 높이(x,y,width,height) 
-        self.setGeometry(200, 200, 1200, 800)
+        self.setGeometry(200, 200, 800, 800)
         
+        #await asyncio.sleep(1)
+
         #입력 텍스트 
         self.lineEdit = QLineEdit("", self)
         self.lineEdit.move(20, 20)
@@ -21,16 +27,16 @@ class Form(QMainWindow):
         #버튼
         self.btn = QPushButton("검색", self)
         self.btn.move(120, 20)
-        self.btn.clicked.connect(self.setTableWidgetData)
+        self.btn.clicked.connect(self.setTableWidgetData())
 
         self.tableWidget = QTableWidget(self)
         self.tableWidget.move(20, 70)
-        self.tableWidget.resize(1100, 600)
+        self.tableWidget.resize(800, 600)
         self.tableWidget.setRowCount(50)  #행의 갯수 
         self.tableWidget.setColumnCount(2)  #컬럼의 갯수 
         #컬럼의 폭을 지정한다. 0번 1번 
         self.tableWidget.setColumnWidth(0, 300)
-        self.tableWidget.setColumnWidth(1, 1100)
+        self.tableWidget.setColumnWidth(1, 300)
         
         #self.setTableWidgetData()
         self.tableWidget.doubleClicked.connect(self.doubleClicked)
@@ -40,6 +46,7 @@ class Form(QMainWindow):
         #User-Agent를 조작하는 경우 
         hdr = {'User-agent':'Mozila/5.0 (compatible; MSIE 5.5; Windows NT)'}
         for n in range(0,5):
+
             #클리앙의 중고장터 주소 
             data ='https://www.clien.net/service/board/sold?&od=T31&po=' + str(n)
             req = urllib.request.Request(data, 
